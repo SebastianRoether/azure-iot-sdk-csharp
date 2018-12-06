@@ -450,11 +450,12 @@ namespace Microsoft.Azure.Devices.Client.Transport.Mqtt
             {
                 int packetId = Util.GetNextPacketId();
                 var subscribePacket = new SubscribePacket(packetId, new SubscriptionRequest(topicFilter, qos));
-                this.subscribeCompletions[packetId] = new TaskCompletionSource();
+                var subscribeCompletion = new TaskCompletionSource();
+                this.subscribeCompletions[packetId] = subscribeCompletion;
 
                 await Util.WriteMessageAsync(context, subscribePacket, ShutdownOnWriteErrorHandler).ConfigureAwait(true);
 
-                await this.subscribeCompletions[packetId].Task.ConfigureAwait(true);
+                await subscribeCompletion.Task.ConfigureAwait(true);
             }
 
             if (Logging.IsEnabled) Logging.Exit(this, context.Name, packetPassed, nameof(SubscribeAsync));
@@ -488,11 +489,12 @@ namespace Microsoft.Azure.Devices.Client.Transport.Mqtt
             int packetId = Util.GetNextPacketId();
             packetPassed.PacketId = packetId;
 
-            this.unsubscribeCompletions[packetId] = new TaskCompletionSource();
+            var unsubscribeCompletion = new TaskCompletionSource();
+            this.unsubscribeCompletions[packetId] = unsubscribeCompletion;
 
             await Util.WriteMessageAsync(context, packetPassed, ShutdownOnWriteErrorHandler).ConfigureAwait(true);
 
-            await this.unsubscribeCompletions[packetId].Task.ConfigureAwait(true);
+            await unsubscribeCompletion.Task.ConfigureAwait(true);
 
             if (Logging.IsEnabled) Logging.Exit(this, context.Name, packetPassed, nameof(UnSubscribeAsync));
         }
