@@ -24,7 +24,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Security;
-using System.Net.WebSockets;
+using System.Net.WebSockets.Managed;
 using System.Runtime.ExceptionServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;

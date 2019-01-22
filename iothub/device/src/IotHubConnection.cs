@@ -11,7 +11,7 @@ namespace Microsoft.Azure.Devices.Client
 #if !NETSTANDARD1_3
     using System.Configuration;
 #endif
-    using System.Net.WebSockets;
+    using System.Net.WebSockets.Managed;
     using System.Security.Cryptography.X509Certificates;
     using System.Net;
     using Microsoft.Azure.Amqp;

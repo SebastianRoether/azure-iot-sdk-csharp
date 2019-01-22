@@ -6,12 +6,17 @@ namespace Microsoft.Azure.Devices.Client.Transport.Mqtt
     using System;
     using System.Diagnostics.Contracts;
     using System.Net;
-    using System.Net.WebSockets;
+    using System.Net.WebSockets.Managed;
     using System.Threading;
     using System.Threading.Tasks;
     using DotNetty.Buffers;
     using DotNetty.Transport.Channels;
     using Microsoft.Azure.Devices.Client.Extensions;
+
+    using WebSocketState = System.Net.WebSockets.WebSocketState;
+    using WebSocketMessageType = System.Net.WebSockets.WebSocketMessageType;
+    using WebSocketReceiveResult = System.Net.WebSockets.WebSocketReceiveResult;
+    using WebSocketCloseStatus = System.Net.WebSockets.WebSocketCloseStatus;
 
     public class ClientWebSocketChannel : AbstractChannel
     {

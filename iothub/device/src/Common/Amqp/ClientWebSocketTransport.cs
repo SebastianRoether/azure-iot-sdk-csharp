@@ -6,11 +6,16 @@ namespace Microsoft.Azure.Amqp.Transport
     using System;
     using System.IO;
     using System.Net;
-    using System.Net.WebSockets;
+    using System.Net.WebSockets.Managed;
     using System.Threading;
     using System.Threading.Tasks;
 
     using Microsoft.Azure.Devices.Client;
+    using WebSocketState = System.Net.WebSockets.WebSocketState;
+    using WebSocketMessageType = System.Net.WebSockets.WebSocketMessageType;
+    using WebSocketException = System.Net.WebSockets.WebSocketException;
+    using WebSocketReceiveResult = System.Net.WebSockets.WebSocketReceiveResult;
+    using WebSocketCloseStatus = System.Net.WebSockets.WebSocketCloseStatus;
 
     sealed class ClientWebSocketTransport : TransportBase
     {
