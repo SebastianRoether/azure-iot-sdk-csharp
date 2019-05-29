@@ -5,7 +5,7 @@ namespace Microsoft.Azure.Devices.Client.Test
 {
     using System;
     using System.Net;
-    using System.Net.WebSockets;
+    using System.Net.WebSockets.Managed;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -13,6 +13,11 @@ namespace Microsoft.Azure.Devices.Client.Test
     using Microsoft.Azure.Amqp.Transport;
     using Microsoft.Azure.Devices.Client;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using WebSocketState = System.Net.WebSockets.WebSocketState;
+    using WebSocketMessageType = System.Net.WebSockets.WebSocketMessageType;
+    using WebSocketReceiveResult = System.Net.WebSockets.WebSocketReceiveResult;
+    using WebSocketCloseStatus = System.Net.WebSockets.WebSocketCloseStatus;
 
     [TestClass]
     [TestCategory("Unit")]
@@ -362,7 +367,7 @@ namespace Microsoft.Azure.Devices.Client.Test
                         context.Response.Close();
                     }
 
-                    HttpListenerWebSocketContext webSocketContext = await context.AcceptWebSocketAsync(WebSocketConstants.SubProtocols.Amqpwsb10, 8 * 1024, TimeSpan.FromMinutes(5)).ConfigureAwait(false);
+                    System.Net.WebSockets.HttpListenerWebSocketContext webSocketContext = await context.AcceptWebSocketAsync(WebSocketConstants.SubProtocols.Amqpwsb10, 8 * 1024, TimeSpan.FromMinutes(5)).ConfigureAwait(false);
 
                     var buffer = new byte[1 * 1024];
                     var arraySegment = new ArraySegment<byte>(buffer);
@@ -394,7 +399,7 @@ namespace Microsoft.Azure.Devices.Client.Test
             {
                 return;
             }
-            catch (WebSocketException)
+            catch (System.Net.WebSockets.WebSocketException)
             {
                 return;
             }
