@@ -5,7 +5,7 @@ namespace Microsoft.Azure.Devices.Client.Test.Mqtt
 {
     using System;
     using System.Net;
-    using System.Net.WebSockets;
+    using System.Net.WebSockets.Managed;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -303,7 +303,7 @@ namespace Microsoft.Azure.Devices.Client.Test.Mqtt
                 context.Response.Close();
             }
 
-            HttpListenerWebSocketContext webSocketContext = await context.AcceptWebSocketAsync(WebSocketConstants.SubProtocols.Mqtt, 8 * 1024, TimeSpan.FromMinutes(5)).ConfigureAwait(false);
+            System.Net.WebSockets.HttpListenerWebSocketContext webSocketContext = await context.AcceptWebSocketAsync(WebSocketConstants.SubProtocols.Mqtt, 8 * 1024, TimeSpan.FromMinutes(5)).ConfigureAwait(false);
 
             serverListener = new ReadListeningHandler();
             serverWebSocketChannel = new ServerWebSocketChannel(null, webSocketContext.WebSocket, context.Request.RemoteEndPoint);
