@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Azure.Devices.Client</id>
+    <version>1.19.5-tapiomqttfix</version>
+    <title>Microsoft Azure IoT Device Client SDK</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/Azure/azure-iot-sdk-csharp/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Azure/azure-iot-sdk-csharp</projectUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288890</iconUrl>
+    <description>Device SDK for Azure IoT Hub</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>IoT Microsoft Azure IoTHub Device Client .NET AMQP MQTT HTTP</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.Azure.Devices.Shared" version="1.15.1" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Codecs.Mqtt" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="DotNetty.Handlers" version="0.6.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Azure.Amqp" version="2.3.5" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="10.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Configuration.ConfigurationManager" version="4.4.1" exclude="Build,Analyzers" />
+        <dependency id="WindowsAzure.Storage" version="8.7.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\netstandard2.0\System.Net.WebSockets.Client.Managed.dll" target="lib\netstandard2.0"/>
+    <file src="bin\Release\netstandard2.0\Microsoft.Azure.Devices.Client.dll" target="lib\netstandard2.0"/>
+  </files>
+</package>
